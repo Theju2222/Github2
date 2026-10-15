@@ -1,0 +1,482 @@
+.header {
+  --nav-plum: #171019;
+  --nav-burgundy: #321b26;
+  --nav-purple: #48213f;
+  --nav-orange: #ff842b;
+  --nav-white: #ffffff;
+  --nav-muted: #f0e8ed;
+
+  position: relative;
+  z-index: 40;
+  width: 100%;
+  color: var(--nav-white);
+
+  background:
+    radial-gradient(
+      ellipse at 5% 0%,
+      rgba(174, 75, 157, 0.12),
+      transparent 55%
+    ),
+    linear-gradient(
+      110deg,
+      #321b26 0%,
+      #251723 50%,
+      #171019 100%
+    );
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.inner {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+
+  width: min(1600px, calc(100% - 96px));
+  
+  margin: 0 auto;
+}
+
+/* Desktop navigation */
+
+.desktopNavigation {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 1.6vw, 28px);
+  justify-self: start;
+}
+
+.navLink {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 44px;
+  padding: 10px 0;
+
+  color: var(--nav-muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+
+  transition: color 200ms ease;
+}
+
+.linkIndicator {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+
+  background: var(--nav-orange);
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+
+.navLink:hover,
+.active {
+  color: var(--nav-orange);
+}
+
+.navLink:hover .linkIndicator,
+.active .linkIndicator {
+  transform: scaleX(1);
+}
+
+/* Existing logo component */
+
+.logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  flex-shrink: 0;
+
+  width: 72px;
+  height: 72px;
+}
+
+/* Actions */
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 18px;
+}
+
+.githubButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--nav-white);
+  text-decoration: none;
+
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+.githubButton .githubIcon {
+  width: 21px;
+  height: 21px;
+}
+
+.contactButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  min-height: 48px;
+  padding: 6px 7px 6px 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+
+  background: var(--nav-white);
+  color: var(--nav-plum);
+
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.contactArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  background: var(--nav-orange);
+  color: var(--nav-plum);
+}
+
+.contactArrow svg {
+  width: 19px;
+  height: 19px;
+  transition: transform 200ms ease;
+}
+
+/* Mobile toggle */
+
+.menuButton {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+
+  width: 46px;
+  height: 46px;
+  padding: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--nav-white);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menuButton span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+
+  background: currentColor;
+
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+}
+
+.menuButtonOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuButtonOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuButtonOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile dropdown */
+
+.mobileNavigation {
+  display: none;
+}
+
+.mobileHeading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+
+  color: var(--nav-orange);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.mobileHeadingLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  min-height: 54px;
+  padding: 14px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  color: var(--nav-muted);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.mobileLinkContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobileNumber {
+  color: #c7a9be;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.mobileArrow {
+  color: var(--nav-orange);
+  font-size: 21px;
+}
+
+.mobileLink:hover,
+.mobileLinkActive {
+  border-color: rgba(255, 132, 43, 0.18);
+  background: rgba(255, 132, 43, 0.08);
+  color: var(--nav-orange);
+}
+
+.mobileLinkActive .mobileNumber {
+  color: var(--nav-orange);
+}
+
+.mobileFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileFooter > span {
+  color: #d1b9c8;
+  font-size: 12px;
+}
+
+.mobileFooter a {
+  align-self: flex-start;
+  padding: 5px 0;
+  color: var(--nav-orange);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Keyboard focus */
+
+.header a:focus-visible,
+.header button:focus-visible {
+  outline: 2px solid var(--nav-orange);
+  outline-offset: 5px;
+}
+
+/* Pointer hover */
+
+@media (hover: hover) {
+  .githubButton:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 132, 43, 0.55);
+    background: rgba(255, 132, 43, 0.08);
+    color: var(--nav-orange);
+  }
+
+  .contactButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 132, 43, 0.15);
+  }
+
+  .contactButton:hover .contactArrow svg {
+    transform: translate(1px, -1px);
+  }
+}
+
+/* Tablet and smaller desktop */
+
+@media (max-width: 1200px) {
+  .inner {
+    grid-template-columns: auto 1fr;
+    width: calc(100% - 64px);
+    min-height: 96px;
+  }
+
+  .desktopNavigation {
+    display: none;
+  }
+
+  .logo {
+    justify-self: start;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .mobileNavigation {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+
+    display: block;
+    max-width: 520px;
+    max-height: calc(100svh - 130px);
+    margin-left: auto;
+    padding: 24px;
+    overflow-y: auto;
+
+    border: 1px solid rgba(255, 132, 43, 0.2);
+    border-radius: 20px;
+
+    background:
+      radial-gradient(
+        ellipse at top left,
+        rgba(174, 75, 157, 0.12),
+        transparent 70%
+      ),
+      #231521;
+
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Phones */
+
+@media (max-width: 600px) {
+  .inner {
+    width: calc(100% - 36px);
+    min-height: 88px;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+
+  .contactButton {
+    display: none;
+  }
+
+  .githubButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  .menuButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .mobileNavigation {
+    top: calc(100% + 8px);
+    max-height: calc(100svh - 112px);
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .mobileLink {
+    padding: 13px 10px;
+    font-size: 15px;
+  }
+
+  .mobileLinkContent {
+    gap: 12px;
+  }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .header *,
+  .header *::before,
+  .header *::after {
+    transition: none !important;
+  }
+}
